@@ -1,1 +1,1 @@
-# Down Up App > API for shape recognition
+# Down Up App > Shape Recognition API
