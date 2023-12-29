@@ -6,7 +6,15 @@ reader = easyocr.Reader(["tr"])
 
 @app.route("/", methods=["GET"])
 def index():
-    return "Accessed"
+    return "Accessed to index."
+
+@app.route("/shape", methods=["GET"])
+def shape():
+    return "Accessed to shape recognizer."
+
+@app.route("/letter", methods=["GET"])
+def letter():
+    return "Accessed to letter recognizer."
 
 @app.route("/shape", methods=["POST"])
 def recognize_shapes_by_coordinates():
