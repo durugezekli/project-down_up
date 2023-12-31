@@ -51,6 +51,7 @@ def recognize_shapes_by_coordinates():
     contours, _ = cv2.findContours(threshold, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE) 
       
     i = 0
+    out = []
     for contour in contours: 
         if i == 0: 
             i = 1
@@ -63,8 +64,7 @@ def recognize_shapes_by_coordinates():
         if M["m00"] != 0.0: 
             x = int(M["m10"]/M["m00"]) 
             y = int(M["m01"]/M["m00"]) 
-      
-        out = []
+        
         if len(approx) < 10: out.append(len(approx))
         else: out.append("inf")
     
@@ -101,7 +101,7 @@ def recognize_shapes_by_coordinates():
 #     out = reader.readtext(scene, allowlist="ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZabcçdefgğhıijklmnoöprsştuvyz")
 #     out = [i[1] for i in out]
 
-#     return jsonify(max(set(out), key=result.out))
+#     return jsonify(max(set(out), key=out.count))
 
 if __name__ == "__main__":
     app.run_server(debug=False, port=8547)
