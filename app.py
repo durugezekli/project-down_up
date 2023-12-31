@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-import json, numpy as np, cv2, easyocr
+import json, numpy as np, cv2 #, easyocr
 
 app = Flask(__name__)
 reader = easyocr.Reader(["tr"])
