@@ -68,7 +68,7 @@ def recognize_shapes_by_coordinates():
         if len(approx) < 10: out.append(len(approx))
         else: out.append("inf")
     
-    return jsonify(max(set(result), key=result.count))
+    return jsonify(max(set(out), key=out.count))
 
 # @app.route("/letter", methods=["POST"])
 # def recognize_letters_by_coordinates():
@@ -98,11 +98,10 @@ def recognize_shapes_by_coordinates():
 #     scene = cv2.flip(scene, 0)
 #     scene = cv2.hconcat([scene]*5)
     
-#     result = reader.readtext(scene, allowlist="ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZabcçdefgğhıijklmnoöprsştuvyz")
-#     result = [i[1] for i in result]
-#     out = max(set(result), key=result.count)
-    
-#     return jsonify(out)
+#     out = reader.readtext(scene, allowlist="ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZabcçdefgğhıijklmnoöprsştuvyz")
+#     out = [i[1] for i in out]
+
+#     return jsonify(max(set(out), key=result.out))
 
 if __name__ == "__main__":
     app.run_server(debug=False, port=8547)
