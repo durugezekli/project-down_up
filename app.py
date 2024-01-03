@@ -12,10 +12,6 @@ def index():
 def shape():
     return "Accessed to shape recognizer."
 
-@app.route("/letter", methods=["GET"])
-def letter():
-    return "Accessed to letter recognizer."
-
 @app.route("/shape", methods=["POST"])
 def recognize_shapes_by_coordinates():
     data = json.loads(request.data)
@@ -48,7 +44,8 @@ def recognize_shapes_by_coordinates():
     
     gray = cv2.cvtColor(scene, cv2.COLOR_BGR2GRAY)
     _, threshold = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY) 
-    contours, _ = cv2.findContours(threshold, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE) 
+    blurred = cv2.blur(threshold, (20, 20))
+    contours, _ = cv2.findContours(blurred, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE) 
       
     i = 0
     out = []
