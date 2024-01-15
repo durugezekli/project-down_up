@@ -1,3 +1,3 @@
-# Down Up App > Shape Recognition API
+# Down Up App > Letter Recognition API
 
-https://shape-recognition-api.onrender.com
+https://letter-recognition-api.onrender.com
