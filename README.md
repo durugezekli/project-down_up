@@ -1,3 +1,3 @@
-# Down Up App > Letter Recognition API
+# Down Up App > Audio Recognition API
 
-https://letter-recognition-api.onrender.com
+https://audio-recognition-api.onrender.com
