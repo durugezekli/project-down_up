@@ -1,8 +1,7 @@
 from flask import Flask, request, jsonify
-import json, numpy as np, cv2 #, easyocr
+import json, numpy as np, cv2
 
 app = Flask(__name__)
-# reader = easyocr.Reader(["tr"])
 
 @app.route("/", methods=["GET"])
 def index():
@@ -66,39 +65,6 @@ def recognize_shapes_by_coordinates():
         else: out.append("inf")
     
     return jsonify(max(set(out), key=out.count))
-
-# @app.route("/letter", methods=["POST"])
-# def recognize_letters_by_coordinates():
-#     global reader
-    
-#     data = json.loads(request.data)
-#     coords = data["coords"]
-    
-#     x_list_raw = [[p[0] for p in l] for l in coords]
-#     y_list_raw = [[p[1] for p in l] for l in coords]
-#     x_list = []
-#     y_list = []
-#     for a in x_list_raw: x_list += a
-#     for b in y_list_raw: y_list += b
-#     max_x = max(x_list)
-#     max_y = max(y_list)
-#     min_x = min(x_list)
-#     min_y = min(y_list)
-    
-#     zeros = np.zeros((int(max_y-min_y+200), int(max_x-min_x+200), 3), np.uint8)
-#     scene = np.where(zeros == 0, 255, zeros)
-#     for line in coords:
-#         for i in range(1, len(line)):
-#             p1 = (int(line[i-1][0]-min_x+100), int(line[i-1][1]-min_y+100))
-#             p2 = (int(line[i][0]-min_x+100), int(line[i][1]-min_y+100))
-#             scene = cv2.line(scene, p1, p2, [0, 0, 0], 10)
-#     scene = cv2.flip(scene, 0)
-#     scene = cv2.hconcat([scene]*5)
-    
-#     out = reader.readtext(scene, allowlist="ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZabcçdefgğhıijklmnoöprsştuvyz")
-#     out = [i[1] for i in out]
-
-#     return jsonify(max(set(out), key=out.count))
 
 if __name__ == "__main__":
     app.run_server(debug=False, port=8547)
