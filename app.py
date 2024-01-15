@@ -14,7 +14,7 @@ def letter():
 
 @app.route("/letter", methods=["POST"])
 def recognize_letters_by_audio():
-    data = json.loads(request.data)
+    # data = json.loads(request.data)
 
     return jsonify(rd.choice([True, False]))
 
@@ -25,7 +25,7 @@ def letter_sequence():
 
 @app.route("/letter-sequence", methods=["POST"])
 def recognize_letter_sequences_by_audio():
-    data = json.loads(request.data)
+    # data = json.loads(request.data)
 
     return jsonify(rd.choice([True, False]))
 
@@ -36,7 +36,7 @@ def shape():
 
 @app.route("/shape", methods=["POST"])
 def recognize_shapes_by_audio():
-    data = json.loads(request.data)
+    # data = json.loads(request.data)
 
     return jsonify(rd.choice([True, False]))
 
@@ -47,7 +47,7 @@ def number():
 
 @app.route("/number", methods=["POST"])
 def recognize_numbers_by_audio():
-    data = json.loads(request.data)
+    # data = json.loads(request.data)
 
     return jsonify(rd.choice([True, False]))
 
