@@ -52,7 +52,7 @@ def recognize_letters_by_coordinates():
             return res
         return pixelate(scene, 24, 24)
             
-    a = cv2.cvtColor(get_image_by_coords(coords, cv2.COLOR_BGR2GRAY) # Test
+    a = cv2.cvtColor(get_image_by_coords(coords, cv2.COLOR_BGR2GRAY)) # Test
     
     results = []
     for n in "ABCÇDEFGĞHIJKLMNOÖPRSŞTUÜVYZ":
