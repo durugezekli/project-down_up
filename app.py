@@ -16,8 +16,7 @@ def recognize_letters_by_coordinates():
     data = json.loads(request.data)
     coords = data["coords"]
 
-    out = [1,1,2,3,5,8,13]
-    return jsonify(max(set(out), key=out.count))
+    return jsonify(True)
 
 if __name__ == "__main__":
     app.run_server(debug=False, port=8547)
