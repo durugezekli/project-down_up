@@ -43,7 +43,7 @@ def recognize_shapes_by_audio():
 # NUMBER
 @app.route("/number", methods=["GET"])
 def shape():
-    return "Accessed to shape audio recognizer."
+    return "Accessed to number audio recognizer."
 
 @app.route("/number", methods=["POST"])
 def recognize_numbers_by_audio():
