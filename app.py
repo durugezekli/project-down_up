@@ -51,18 +51,14 @@ def recognize_letters_by_coordinates():
                         res[y][x][0], res[y][x][1], res[y][x][2] = 0, 0, 0
             return res
         return pixelate(scene, 24, 24)
-    
-    train_coords = {}
-    for let in "ABCÇDEFGĞHIJKLMNOÖPRSŞTUÜVYZ":
-        with open(path.join("letter_train", let), "r") as fr: train_coords.update({let: eval(fr.read())})
-    
-    a = cv2.cvtColor(get_image_by_coords(list(train_coords.values())[3]), cv2.COLOR_BGR2GRAY) # Test
+            
+    a = cv2.cvtColor(get_image_by_coords(coords, cv2.COLOR_BGR2GRAY) # Test
     
     results = []
-    for n, b in list(train_coords.items()):
+    for n in "ABCÇDEFGĞHIJKLMNOÖPRSŞTUÜVYZ":
         print(n) # DEBUG
         
-        s = ssim(a, cv2.cvtColor(get_image_by_coords(b), cv2.COLOR_BGR2GRAY))
+        s = ssim(a, cv2.cvtColor(cv2.imread(path.join("letter_train", n+".jpg")), cv2.COLOR_BGR2GRAY))
         results.append([n, s])
     results = sorted(results, key=lambda x: x[1], reverse=True)[:5]
     
