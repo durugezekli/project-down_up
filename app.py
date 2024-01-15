@@ -40,16 +40,16 @@ def recognize_letters_by_coordinates():
         def pixelate(img, w, h):
             height, width = img.shape[:2]
             temp = cv2.resize(img, (w, h), interpolation=cv2.INTER_LINEAR)
-            res = cv2.resize(temp, (width, height), interpolation=cv2.INTER_NEAREST)
+            # res = cv2.resize(temp, (width, height), interpolation=cv2.INTER_NEAREST)
             for y in range(len(temp)):
                 for x in range(len(temp[y])):
                     if temp[y][x][0] != 255 or temp[y][x][1] != 255 or temp[y][x][2] != 255:
                         temp[y][x][0], temp[y][x][1], temp[y][x][2] = 0, 0, 0
-            for y in range(len(res)):
-                for x in range(len(res[y])):
-                    if res[y][x][0] != 255 or res[y][x][1] != 255 or res[y][x][2] != 255:
-                        res[y][x][0], res[y][x][1], res[y][x][2] = 0, 0, 0
-            return res
+            # for y in range(len(res)):
+            #     for x in range(len(res[y])):
+            #         if res[y][x][0] != 255 or res[y][x][1] != 255 or res[y][x][2] != 255:
+            #             res[y][x][0], res[y][x][1], res[y][x][2] = 0, 0, 0
+            return temp
         return pixelate(scene, 24, 24)
             
     a = cv2.cvtColor(get_image_by_coords(coords), cv2.COLOR_BGR2GRAY) # Test
@@ -58,13 +58,13 @@ def recognize_letters_by_coordinates():
     for n in "ABCÇDEFGĞHIJKLMNOÖPRSŞTUÜVYZ":
         print(n) # DEBUG
         
-        s = ssim(a, cv2.cvtColor(cv2.imread(path.join("letter_train", n+".jpg")), cv2.COLOR_BGR2GRAY))
+        s = ssim(a, cv2.cvtColor(cv2.imread(path.join("letter_train", f"{n}.jpg")), cv2.COLOR_BGR2GRAY))
         results.append([n, s])
-    results = sorted(results, key=lambda x: x[1], reverse=True)[:5]
+    results = sorted(results, key=lambda x: x[1], reverse=True)[:3]
     
     print(results) # DEBUG
     
-    return jsonify(data["answer"] in results)
+    return jsonify(data["answer"] in [x for x, y in results])
 
 if __name__ == "__main__":
     app.run_server(debug=False, port=8547)
