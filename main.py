@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 from threading import Thread
 
 import logging
-# logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.DEBUG)
 
 # External Threads
 def audio_api_activation_thread():
