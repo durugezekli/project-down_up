@@ -56,13 +56,9 @@ def recognize_letters_by_coordinates():
     
     results = []
     for n in "ABCÇDEFGĞHIJKLMNOÖPRSŞTUÜVYZ":
-        print(n) # DEBUG
-        
         s = ssim(a, cv2.cvtColor(cv2.imread(path.join("letter_train", f"{n}.jpg")), cv2.COLOR_BGR2GRAY))
         results.append([n, s])
-    results = sorted(results, key=lambda x: x[1], reverse=True)[:3]
-    
-    print(results) # DEBUG
+    results = sorted(results, key=lambda x: x[1], reverse=True)[:5]
     
     return jsonify(data["answer"] in [x for x, y in results])
 
